@@ -1,13 +1,13 @@
   # 🌐 Website Emulator
 
 This project is a universal web emulator that lets you browse any website seamlessly inside a single page.
-Built with Flask and HTML5, it fetches external websites, rewrites resources like images, links, and scripts, and displays them inside a custom viewer, without using iframes or external browsers.
+Built with Flask and HTML5, it fetches external websites, rewrites resources like images, links, and scripts, and displays them inside a custom viewer, without using iframes or external browsers. (MADE WITH CHATGPT)
 
 ✅ Supports clickable links, redirections, and dynamic JavaScript execution.
 ✅ Custom User-Agent field to simulate different browsers and devices.
 ✅ Realistic website appearance — CSS and JS are preserved, keeping the original design intact.
 ✅ Secure, fast, and lightweight — only a simple main.py and loader.html needed.
-✅ Fullscreen mode and responsive layout for a better browsing experience.(Not really yet)
+✅ Fullscreen mode and responsive layout for a better browsing experience. (Not really yet)
 ## 💡 Features
 
 - Dynamic website loading via the address bar
