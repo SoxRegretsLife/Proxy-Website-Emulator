@@ -1,0 +1,150 @@
+      <!DOCTYPE html>
+<html>
+<head>
+  <title>Website Emulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 30px;
+    }
+
+    .address-bar {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .address-bar input {  
+      flex: 1;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      margin-right: 10px;
+    }
+
+    .address-bar button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #0078D4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .address-bar button:hover {
+      background-color: #005fa3;
+    }
+
+    #viewer {
+      background: white;
+      margin-top: 30px;
+      padding: 20px;
+      min-height: 600px;
+      width: calc(100% - 60px);
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      overflow: auto;
+      transition: all 0.3s ease;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .fullscreen {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="address-bar" id="addressBar">
+    <input type="text" id="urlInput" placeholder="Enter website URL (https://...)" autocomplete="off">
+    <button onclick="loadWebsite()">Go</button>
+    <button onclick="toggleFullscreen()">Fullscreen</button>
+  </div>
+
+  <div id="viewer">Website will appear here.</div>
+
+  <script>
+    let isFullscreen = false;
+
+    function loadWebsite(url = null, fromLink = false) {
+      const viewer = document.getElementById("viewer");
+      const input = document.getElementById("urlInput");
+
+      if (!url) {
+        url = input.value;
+      }
+
+      if (!url.startsWith("http")) {
+        alert("Please enter a full URL including http or https.");
+        return;
+      }
+
+      if (!fromLink) {
+        input.value = url;
+      }
+
+      viewer.innerHTML = "<p>Loading site...</p>";
+
+      fetch(`/render?url=${encodeURIComponent(url)}`)
+        .then(res => res.text())
+        .then(html => {
+          viewer.innerHTML = html;
+          input.value = url;
+
+          const scripts = viewer.querySelectorAll("script");
+          scripts.forEach(oldScript => {
+            const newScript = document.createElement("script");
+            if (oldScript.src) {
+              newScript.src = oldScript.src;
+            } else {
+              newScript.textContent = oldScript.textContent;
+            }
+            oldScript.replaceWith(newScript);
+          });
+        })
+        .catch(err => {
+          viewer.innerHTML = `<p>Error loading site: ${err}</p>`;
+        });
+    }
+
+    function toggleFullscreen() {
+      const viewer = document.getElementById("viewer");
+      const bar = document.getElementById("addressBar");
+
+      isFullscreen = !isFullscreen;
+
+      if (isFullscreen) {
+        viewer.classList.add("fullscreen");
+        bar.classList.add("hidden");
+      } else {
+        viewer.classList.remove("fullscreen");
+        bar.classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
