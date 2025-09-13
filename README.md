@@ -1,4 +1,4 @@
-# 🌐 Website Emulator
+# 🌐 Simple Python Proxy
 
 This description is made with chatgpt so uh
 
