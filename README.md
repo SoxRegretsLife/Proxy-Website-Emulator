@@ -18,8 +18,13 @@ This is a Flask-based mini web browser emulator that fetches and displays other 
 - Flask
 - requests
 - beautifulsoup4
+##Hosting
 
 Install dependencies:
 
 ```bash
 pip install flask requests beautifulsoup4
+```
+If you installed depedencies:
+```bash
+python main.py
