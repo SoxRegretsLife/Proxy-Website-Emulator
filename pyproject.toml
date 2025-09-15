@@ -1,8 +1,8 @@
 [project]
-name = "python-template"
+name = "Simple-Python-Proxy"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "A simple proxy mad with python libraries"
+authors = ["Soxregretslife"]
 requires-python = ">=3.11"
 dependencies = [
     "beautifulsoup4>=4.13.3",
