@@ -32,6 +32,7 @@ Or...
 pip install -r requirements.txt
 ```
 
+
 If you had installed the depedencies:
 ```bash
 python main.py
