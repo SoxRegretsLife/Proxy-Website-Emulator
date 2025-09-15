@@ -1,6 +1,6 @@
 # 🌐 Simple Python Proxy
 
-This description is made with chatgpt so uh
+This description is made with ChatGpt so uh
 
 This is a Flask-based mini web browser emulator that fetches and displays other websites inside a custom viewer — no iframes used!
 
@@ -26,6 +26,12 @@ Install dependencies:
 ```bash
 pip install flask requests beautifulsoup4
 ```
-If you installed depedencies:
+## Or...
+
+```
+pip install -r requirements.txt
+```
+
+If you had installed the depedencies:
 ```bash
 python main.py
