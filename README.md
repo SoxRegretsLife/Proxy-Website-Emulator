@@ -26,7 +26,7 @@ Install dependencies:
 ```bash
 pip install flask requests beautifulsoup4
 ```
-## Or...
+Or...
 
 ```
 pip install -r requirements.txt
